@@ -15,18 +15,18 @@ body, html {
   
   }
   .bgimg-1 {
-    background-image: url("images/eiger_mountain_grindelwald_switzerland_landscape-wallpaper-1366x768.jpg");
+    background-image: url("eiger_mountain_grindelwald_switzerland_landscape-wallpaper-1366x768.jpg");
     min-height: 100%;
     min-width: 100%;
   }
   
   .bgimg-2 {
-    background-image: url("images/beautiful_moon_2-wallpaper-1366x768.jpg");
+    background-image: url("beautiful_moon_2-wallpaper-1366x768.jpg");
     min-height: 400px;
   }
   
   .bgimg-3 {
-    background-image: url("images/wave_4-wallpaper-1366x768.jpg");
+    background-image: url("wave_4-wallpaper-1366x768.jpg");
     min-height: 400px;
   }
   
@@ -100,9 +100,19 @@ body, html {
     bottom: 0px;
   }
 
-  .social{
-    margin:0px 630px;
-    
+   a{
+    display: inline-block;
     font-size:4rem;
+  }
+
+  [class^="fab"], [class*=" fab"] {
+    display: inline-block;
+    width: 100%;
+}
+
+  
+  .social{
+    background-color:rgb(128, 126, 148);
+    text-align: center;
   }
   
