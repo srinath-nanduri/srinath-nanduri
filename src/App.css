@@ -1,0 +1,358 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+.App {
+  height: 100vh;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 60px; /* Adjust based on your nav height */
+  transition: all 0.3s ease-out;
+}
+
+.parallax-container {
+  display: flex;
+  width: 300vw;
+  height: 100vh;
+}
+
+.parallax-section {
+  flex: none;
+  width: 100vw;
+  height: 100vh;
+  scroll-snap-align: start;
+  position: relative;
+  overflow: hidden;
+}
+
+.background {
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  right: -10%;
+  bottom: -10%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform 0.1s ease-out;
+  will-change: transform;
+}
+
+.parallax-section:nth-child(1) .background {
+  background-image: url('/assets/bg1.jpg');
+}
+
+.parallax-section:nth-child(2) .background {
+  background-image: url('/assets/bg2.jpg');
+}
+
+.parallax-section:nth-child(3) .background {
+  background-image: url('/assets/bg3.jpg');
+}
+
+.parallax-section:nth-child(4) .background {
+  background-image: url('/assets/bg4.jpg');
+}
+
+.parallax-section .background {
+  transform: translateX(calc(var(--scroll-percentage) * 300px)) scale(1.2);
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 60%;
+}
+
+h2 {
+  margin-bottom: 1rem;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.App::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.App {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Profile Picture */
+.profile-pic {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #ccc; /* Placeholder color */
+  background-image: url('/assets/bg4.jpg'); /* Replace with your image path */
+  background-size: cover;
+  background-position: center;
+  z-index: 10;
+}
+
+/* Logo Container */
+.logo-container {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+}
+
+/* Logo */
+.logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #cccccc00; /* Placeholder color */
+  background-image: url('/assets/logo1bg.png'); /* Replace with your logo path */
+  background-size: cover;
+  background-position: center;
+}
+
+/* Brand Name */
+.brand-name {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 5px;
+}
+
+.brand-name h3 {
+  margin: 0;
+  font-size: 1em;
+  color: #333;
+}
+
+/* Adjust the content positioning */
+.parallax-section .content {
+  top: 55%;
+  max-width: 60%;
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.146);
+  padding: 15px 0;
+  z-index: 100;
+  flex-wrap: wrap;
+}
+
+.nav-item {
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  margin: 5px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.nav-item:hover {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) and (orientation: portrait) {
+  .App {
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    padding-bottom: 0;
+  }
+
+  .parallax-container {
+    flex-direction: column;
+    width: 100vw;
+    height: 300vh;
+  }
+
+  .parallax-section {
+    width: 100vw;
+    height: 100vh;
+    scroll-snap-align: start;
+  }
+
+  .parallax-section .background {
+    transform: translateY(calc(var(--scroll-percentage) * 75px)) scale(1.05);
+  }
+
+  .profile-pic {
+    width: 80px;
+    height: 80px;
+    top: 10px;
+    right: 10px;
+  }
+
+  .logo-container {
+    top: 10px;
+    left: 10px;
+  }
+
+  .logo {
+    width: 60px;
+    height: 60px;
+  }
+
+  .brand-name h3 {
+    font-size: 0.9em;
+  }
+
+  .parallax-section .content {
+    top: 50%;
+    padding: 15px;
+  }
+
+  .nav-item {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+
+  .background {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+  }
+
+  .parallax-section .background {
+    transform: translateY(calc(var(--scroll-percentage) * 75px)) scale(1.05);
+  }
+}
+
+@media (max-width: 768px) and (orientation: landscape) {
+  .App {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+  }
+
+  .parallax-container {
+    flex-direction: row;
+    width: 300vw;
+    height: 100vh;
+  }
+
+  .parallax-section {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .parallax-section .background {
+    transform: translateX(calc(var(--scroll-percentage) * 75px)) scale(1.05);
+  }
+
+  .profile-pic {
+    width: 60px;
+    height: 60px;
+    top: 10px;
+    right: 10px;
+  }
+
+  .logo-container {
+    top: 10px;
+    left: 10px;
+  }
+
+  .logo {
+    width: 50px;
+    height: 50px;
+  }
+
+  .brand-name h3 {
+    font-size: 0.8em;
+  }
+
+  .parallax-section .content {
+    top: 50%;
+    padding: 10px;
+    max-width: 70%;
+  }
+
+  .bottom-nav {
+    padding: 5px 0;
+  }
+
+  .nav-item {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+
+  .background {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+  }
+
+  .parallax-section .background {
+    transform: translateX(calc(var(--scroll-percentage) * 75px)) scale(1.05);
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-pic {
+    width: 60px;
+    height: 60px;
+  }
+
+  .logo {
+    width: 50px;
+    height: 50px;
+  }
+
+  .brand-name h3 {
+    font-size: 0.8em;
+  }
+
+  .parallax-section .content {
+    top: 45%;
+    padding: 10px;
+  }
+
+  .nav-item {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .background {
+    background-size: cover;
+  }
+
+  .parallax-section .background {
+    transform: translateX(calc(var(--scroll-percentage) * 75px)) scale(1.05);
+  }
+}
+
+.App.portrait .parallax-container {
+  flex-direction: column;
+}
+
+.App.landscape .parallax-container {
+  flex-direction: row;
+}
