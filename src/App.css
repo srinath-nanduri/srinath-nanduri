@@ -76,6 +76,83 @@ body, html {
   max-width: 60%;
 }
 
+.content.fade-in {
+  opacity: 1; /* Fully visible */
+  /* transform: translateY(0);  */
+  transform: translate(-50%, -50%);
+}
+
+.boundary{
+  width: 300px; /* Set a fixed width */
+  height: 300px; /* Set a fixed height */
+  border: 1px solid #E1410D; /* Red border */
+  border-radius: 50%; 
+  display: flex; /* Use flexbox for centering */
+  flex-direction: column; /* Stack content vertically */
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  padding: 20px; /* Padding inside the circle */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  opacity: 1; /* Start hidden */
+  /* transform: translateY(20px);  */
+  /* transition: opacity 0.8s ease, transform 0.8s ease; Smooth transition */
+  /* animation: stretchAndWave 15s ease-in-out infinite;  */
+  /* animation: pullAndRelease 2s ease forwards; borderWave 2s linear 2s forwards; */
+  /* animation-delay: 2s; */
+  transform: translateY(-900px); /*Start slightly below*/
+  transform-origin: center;
+  transition: opacity 0.8s ease, transform 0.8s ease, border-radius 2s;; /* Smooth transition */
+}
+
+.boundary span:nth-child(1){
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px red solid;
+  border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+  animation: spin 1s linear infinite;
+}
+.boundary span:nth-child(2){
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px red solid;
+  border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+  animation: spin 1.5s linear infinite;
+}
+.boundary span:nth-child(3){
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px red solid;
+  border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+  animation: spin 2s linear infinite;
+}
+
+#contact .content{
+  background-color: #E1410D;
+}
+
+.contact-email{
+  text-decoration: none;
+  color: #000;
+}
+
+h2, p {
+  margin: 0;
+  text-align: center;
+}
+
+/* #contact{
+  background-color: rgba(240, 248, 255, 0.466);
+} */
+
 h2 {
   margin-bottom: 1rem;
 }
@@ -116,8 +193,8 @@ h2 {
 
 /* Logo */
 .logo {
-  width: 80px;
-  height: 80px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   background-color: #cccccc00; /* Placeholder color */
   background-image: url('/assets/logo1bg.png'); /* Replace with your logo path */
@@ -129,7 +206,8 @@ h2 {
 .brand-name {
   margin-top: 10px;
   padding: 10px;
-  background-color: rgba(255, 255, 255, 0.8);
+  /* background-color: rgba(255, 255, 255, 0.8); */
+  background-color: #e1420dbb;
   border-radius: 5px;
 }
 
@@ -141,7 +219,7 @@ h2 {
 
 /* Adjust the content positioning */
 .parallax-section .content {
-  top: 55%;
+  top: 50%;
   max-width: 60%;
 }
 
@@ -161,17 +239,20 @@ h2 {
 }
 
 .nav-item {
-  color: white;
+  color: #E1410D;
   text-decoration: none;
   padding: 10px 20px;
   margin: 5px;
   font-size: 16px;
+  font-weight: bold;
   transition: all 0.3s ease;
 }
 
 .nav-item:hover {
   cursor: pointer;
-  background-color: rgba(255, 255, 255, 0.2);
+  color: rgb(15, 0, 0);
+  /* background-color: rgb(15, 0, 0); */
+  background-color: #E1410D;
   border-radius: 5px;
 }
 
@@ -224,6 +305,11 @@ h2 {
   .parallax-section .content {
     top: 50%;
     padding: 15px;
+    max-width: 80%;
+  }
+
+  .bottom-nav{
+    display: none;
   }
 
   .nav-item {
@@ -315,7 +401,7 @@ h2 {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 490px) {
   .profile-pic {
     width: 60px;
     height: 60px;
@@ -333,6 +419,11 @@ h2 {
   .parallax-section .content {
     top: 45%;
     padding: 10px;
+    max-width: 80%;
+  }
+
+  .bottom-nav{
+    display: none;
   }
 
   .nav-item {
@@ -347,6 +438,10 @@ h2 {
   .parallax-section .background {
     transform: translateX(calc(var(--scroll-percentage) * 75px)) scale(1.05);
   }
+
+  .scroll-indicator{
+    display: none;
+  }
 }
 
 .App.portrait .parallax-container {
@@ -355,4 +450,86 @@ h2 {
 
 .App.landscape .parallax-container {
   flex-direction: row;
+}
+
+.scroll-indicator {
+  position: fixed;
+  width: fit-content;
+  max-width: 100px;
+  right: 10px; /* Adjust as needed */
+  top: 47%; /* Center vertically */
+  transform: translateY(-50%); /* Adjust for perfect centering */
+  font-size: 2rem; 
+  /* height: 10px; Height of the indicator */
+  color: rgb(176, 0, 0); 
+  /* border-radius: 5px; Rounded corners */
+  pointer-events: none; /* Prevent interaction */
+  z-index: 1000; /* Ensure it appears above other content */
+  animation: vibrate 2s infinite; /* Apply the vibration animation */
+}
+
+/* Vibration Animation */
+@keyframes vibrate {
+  0% { transform: translateY(-50%) translateX(0); }
+  25% { transform: translateY(-50%) translateX(5px); }
+  50% { transform: translateY(-50%) translateX(-5px); }
+  75% { transform: translateY(-50%) translateX(5px); }
+  100% { transform: translateY(-50%) translateX(0); }
+}
+
+.arrowhead {
+  /* width: 50px; 
+  height: 50px; */
+  width: fit-content;
+  transition: transform 1s; 
+  background-color: #33333300;
+  fill:none;
+  stroke:#E1410D;
+  stroke-width:3;
+} 
+
+.arrowhead:hover {
+  transform: scale(1.1); /* Scale up on hover */
+}
+
+.ubuntu-mono-regular {
+  font-family: "Ubuntu Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.ubuntu-mono-bold {
+  font-family: "Ubuntu Mono", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.ubuntu-mono-regular-italic {
+  font-family: "Ubuntu Mono", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.ubuntu-mono-bold-italic {
+  font-family: "Ubuntu Mono", serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+@keyframes spin{
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin2{
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }

@@ -4,6 +4,7 @@ import './App.css';
 function App() {
   const containerRef = useRef(null);
   const [isPortrait, setIsPortrait] = useState(window.innerHeight > window.innerWidth);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -94,52 +95,84 @@ function App() {
       });
     };
   }, [isPortrait]);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className={`App ${isPortrait ? 'portrait' : 'landscape'}`} ref={containerRef}>
       <div className="parallax-container">
         <section id="boundry" className="parallax-section">
           <div className="background"></div>
-          <div className="profile-pic"></div>
+          {/* <div className="profile-pic"></div> */}
           <div className="logo-container">
             <div className="logo"></div>
-            <div className="brand-name">
+            {/* <div className="brand-name">
               <h3>Your Brand</h3>
-            </div>
+            </div> */}
           </div>
-          <div className="content">
+          <div className={`content boundary ubuntu-mono-regular ${isVisible ? 'fade-in' : ''}`}>
+            <span></span>
+            <span></span>
+            <span></span>
+            
             <h2>Boundry</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.</p>
+            <p>We are the stretchers!, don't get us wrong, we do stretch the boundaries, 
+              wherever you need your ends to meet we are there to help technically.
+            </p>
+            <p>This is where you can imagine something to build and we will provide the tools 
+              and people to build it for you.
+            </p>
+            <p>Read more in 'About Us'</p>
           </div>
         </section>
         <section id="projects" className="parallax-section">
           <div className="background"></div>
-          <div className="content">
+          <div className="content ubuntu-mono-regular">
             <h2>Projects</h2>
             <p>Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor.</p>
           </div>
         </section>
         <section id="about" className="parallax-section">
           <div className="background"></div>
-          <div className="content">
+          <div className="content ubuntu-mono-regular">
             <h2>About Us</h2>
-            <p>Suspendisse in justo eu magna luctus suscipit. Sed lectus.</p>
+            <p>                
+              Hi, this is Boundaries, we are a team of developers who help achieve an internet presence of your idea and help out people reach you
+            </p>
           </div>
         </section>
         <section id="contact" className="parallax-section">
           <div className="background"></div>
-          <div className="content">
+          <div className="content ubuntu-mono-regular">
             <h2>Contact Us</h2>
-            <p>Suspendisse in justo eu magna luctus suscipit. Sed lectus.</p>
+            <p><strong><i>
+              <a href="mailto:sales@boundaries.in" className='contact-email'>
+              <i className="far fa-envelope" style={{ color: '#000' }}></i>
+              &nbsp;sales@boundaries.in</a>
+            </i></strong></p>
           </div>
         </section>
       </div>
-      <nav className="bottom-nav">
+      <nav className="bottom-nav ubuntu-mono-regular">
         <a href="#boundry" className="nav-item">Boundry</a>
         <a href="#projects" className="nav-item">Projects</a>
         <a href="#about" className="nav-item">About Us</a>
         <a href="#contact" className="nav-item">Contact Us</a>
       </nav>
+
+      {/* Scroll Indicator */}
+      <div className="scroll-indicator">
+        <svg class='arrowhead' xmlns="http://www.w3.org/2000/svg">
+          <path d="M50 90 L70 120 L50 150" />
+          Sorry, your browser does not support inline SVG.
+        </svg>
+      </div>
+
     </div>
   );
 }
